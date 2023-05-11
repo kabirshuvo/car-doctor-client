@@ -3,6 +3,7 @@ import App from "../layout/App";
 import About from "../pages/About/About";
 import Appointment from "../pages/Appointment/Appointment";
 import Blog from "../pages/Blog/Blog";
+import BookService from "../pages/BookService/BookService";
 import Checkout from "../pages/Checkout/Checkout";
 import Contacts from "../pages/Contacts/Contacts";
 import Home from "../pages/Home/home";
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/book/:id',
+        element: <BookService></BookService>,
+        loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
       },
       {
         path: '/checkout/:id',

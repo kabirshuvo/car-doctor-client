@@ -59,12 +59,12 @@ const Banner = () => {
             src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1583&q=80"
             className="w-full"
           />
-          <div className="absolute flex flex-col gap-7 transform -translate-y-1/2 left-5 right-5 top-1/2 bg-gradient-to-r from-[#151515] rounded-md">
-            <div>
-              <h3 className="text-5xl font-bold">Affordable Price For Car Servicing</h3>
+          <div className="absolute flex flex-col gap-7 transform -translate-y-1/2 left-5 right-5 top-1/2 bg-gradient-to-r from-[#151515] rounded-md ">
+            <div style={{width: '50%'}} className="w-1/2">
+              <h3  className="text-5xl font-bold ">Affordable Price For Car Servicing</h3>
             </div>
             <div>
-              <p className="text-3xl w-2/3">Solemani talowar Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae rerum excepturi deserunt explicabo itaque, fuga praesentium velit nulla natus obcaecati incidunt aut dignissimos laborum blanditiis officia maxime nihil tempora harum!</p>
+              <p className="text-3xl w-1/2">Solemani talowar Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae rerum excepturi deserunt explicabo itaque, fuga praesentium velit nulla natus obcaecati incidunt aut dignissimos laborum blanditiis officia maxime nihil tempora harum!</p>
             </div>
             <div>
               <button className="btn btn-primary">Discover</button>
