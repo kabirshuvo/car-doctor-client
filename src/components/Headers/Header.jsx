@@ -1,6 +1,13 @@
+import { useContext } from 'react';
 import { FaCarAlt } from 'react-icons/fa';
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from '../../providers/AuthProvider';
 const Header = () => {
+  const {user, logOut} = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut();
+  }
+
   const navItems = (
     <>
       <li>
@@ -21,6 +28,7 @@ const Header = () => {
     </>
   );
 
+ 
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -55,9 +63,18 @@ const Header = () => {
           <ul className="flex gap-7">{navItems}</ul>
         </div>
         <div className="navbar-end">
+          
           <Link to="/appointment" className="btn btn-denger">
             Appointment
           </Link>
+{/* Login - LogOut Section */}
+          <div>
+          {
+            user?.email ? <button onClick={handleLogOut} className="btn btn-denger ms-2">LogOut</button> : <Link className="btn btn-success ms-2" to='/login'>LogIn</Link>
+          }
+          </div>
+
+          
         </div>
       </div>
     </div>
