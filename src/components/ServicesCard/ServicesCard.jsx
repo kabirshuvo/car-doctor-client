@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const ServicesCard = ({service}) => {
@@ -17,7 +18,9 @@ const ServicesCard = ({service}) => {
           <h3>{price}</h3>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions">
-            <button className="btn btn-primary">Buy Now</button>
+            <Link to={`/checkout/${_id}`}>
+            <button className="btn btn-primary">Book Now</button>
+            </Link>
           </div>
         </div>
       </div>

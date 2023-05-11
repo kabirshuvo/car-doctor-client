@@ -2,28 +2,30 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
-const LogIn = () => {
 
-    const {signIn} = useContext(AuthContext);
+const Register = () => {
+    const {createUser} = useContext(AuthContext);
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password)
+    const handleRegister = (event) => {
+        event.preventDefault();
 
-    signIn(email, password)
-    .then(result => {
-      const user =result.user;
-      console.log(user);
-    })
-    .catch(error => console.error(error))
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
 
+        console.log(name, email, password);
 
-  };
-  return (
-    <div>
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+
+      };
+    return (
+        <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
           <div className="text-center lg:text-left">
@@ -35,17 +37,28 @@ const LogIn = () => {
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
               <h1 className="text-5xl font-bold">
-                Please <br /> Login <br />
+                Please <br /> Register <br />
                 ...
               </h1>
 
-              <form onSubmit={handleLogin}>
+              <form onSubmit={handleRegister}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="name"
+                    name="name"
+                    className="input input-bordered"
+                  />
+                </div>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     placeholder="email"
                     name="email"
                     className="input input-bordered"
@@ -56,9 +69,25 @@ const LogIn = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     name="password"
+                    className="input input-bordered"
+                  />
+                  <label className="label">
+                    <a href="#" className="label-text-alt link link-hover">
+                      Forgot password?
+                    </a>
+                  </label>
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Confirm Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="password"
+                    name="confirm"
                     className="input input-bordered"
                   />
                   <label className="label">
@@ -71,19 +100,19 @@ const LogIn = () => {
                   <input
                     className="btn btn-primary"
                     type="submit"
-                    value="Login"
+                    value="SignUp"
                   />
                 </div>
               </form>
               <div>
-                <p>New To This Site? <Link className="text-orange-700" to='/register'>Please Register</Link></p>
+                <p>Already Have An Account? <Link className="text-orange-700" to='/login'>Please Login</Link></p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default LogIn;
+export default Register;
