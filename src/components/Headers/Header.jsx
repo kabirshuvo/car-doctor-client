@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import { FaCarAlt } from 'react-icons/fa';
+import { useContext } from "react";
+import { FaCarAlt } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from '../../providers/AuthProvider';
+import { AuthContext } from "../../providers/AuthProvider";
 const Header = () => {
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut();
-  }
+  };
 
   const navItems = (
     <>
@@ -25,10 +25,27 @@ const Header = () => {
       <li>
         <NavLink to="/contacts">Contacts </NavLink>
       </li>
-    </>
+      
+        {user?.email ? (
+          <>
+            <li>
+              <NavLink to="/bookings">My Bookings </NavLink>
+            </li>
+            <li>
+              <button onClick={handleLogOut}>LogOut</button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link  to="/login">
+              LogIn
+            </Link>
+          </li>
+        )}
+      </>
+    
   );
 
- 
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -57,24 +74,19 @@ const Header = () => {
               {navItems}
             </ul>
           </div>
-          <Link to='/' className="btn btn-ghost normal-case text-xl">Car <FaCarAlt className='mx-2 text-purple-700'></FaCarAlt> Doctor</Link>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Car <FaCarAlt className="mx-2 text-purple-700"></FaCarAlt> Doctor
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="flex gap-7">{navItems}</ul>
         </div>
         <div className="navbar-end">
-          
           <Link to="/appointment" className="btn btn-denger">
             Appointment
           </Link>
-{/* Login - LogOut Section */}
-          <div>
-          {
-            user?.email ? <button onClick={handleLogOut} className="btn btn-denger ms-2">LogOut</button> : <Link className="btn btn-success ms-2" to='/login'>LogIn</Link>
-          }
-          </div>
 
-          
+          <div>{/* Login - LogOut Section */}</div>
         </div>
       </div>
     </div>

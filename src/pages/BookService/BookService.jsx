@@ -20,6 +20,7 @@ const BookService = () => {
         customerName: name,
         email,
         date,
+        img,
         service: title,
         service_id: _id,
         price: price
