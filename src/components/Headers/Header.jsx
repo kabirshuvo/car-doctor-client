@@ -5,7 +5,11 @@ import { AuthContext } from "../../providers/AuthProvider";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
-    logOut();
+    logOut()
+    .then(() => {
+      localStorage.removeItem('carDoctor-access-token')
+    })
+    .catch( error => console.log(error))
   };
 
   const navItems = (
