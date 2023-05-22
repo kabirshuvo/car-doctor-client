@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const LogIn = () => {
@@ -19,26 +20,12 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
 
-        const loggedUserEmail = {
-          email: user.email,
-        };
-        console.log(loggedUserEmail);
+        
+        console.log(user);
+        navigate(from, { replace: true });
 
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(loggedUserEmail),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("jwt response", data);
-            //* Warning: Local Storage is not the best Place (second: bestPlace) to store access token
 
-            localStorage.setItem("carDoctor-access-token", data.token);
-            navigate(from, { replace: true });
-          });
+        
       })
       .catch((error) => console.error(error));
   };
@@ -102,6 +89,7 @@ const LogIn = () => {
                     Please Register
                   </Link>
                 </p>
+                <SocialLogIn></SocialLogIn>
               </div>
             </div>
           </div>

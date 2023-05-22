@@ -1,31 +1,30 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import SocialLogIn from "../../components/SocialLogIn/SocialLogIn";
 import { AuthContext } from "../../providers/AuthProvider";
 
-
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
-    const handleRegister = (event) => {
-        event.preventDefault();
+  const handleRegister = (event) => {
+    event.preventDefault();
 
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
 
-        console.log(name, email, password);
+    console.log(name, email, password);
 
-        createUser(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => console.error(error))
-
-      };
-    return (
-        <div>
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+  return (
+    <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
           <div className="text-center lg:text-left">
@@ -105,14 +104,20 @@ const Register = () => {
                 </div>
               </form>
               <div>
-                <p>Already Have An Account? <Link className="text-orange-700" to='/login'>Please Login</Link></p>
+                <p>
+                  Already Have An Account?{" "}
+                  <Link className="text-orange-700" to="/login">
+                    Please Login
+                  </Link>
+                </p>
+                <SocialLogIn></SocialLogIn>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;
